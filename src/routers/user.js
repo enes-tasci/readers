@@ -18,7 +18,9 @@ router.post("/kitap-ekle", auth.isNotAuth, userController.book_add_post);
 
 router.get("/kitap-ekle", csrf, auth.isNotAuth, userController.book_add_get);
 
-router.get("/profil", auth.isNotAuth, userController.profile_get);
+router.post("/profil", auth.isNotAuth, userController.profile_post);
+
+router.get("/profil", csrf, auth.isNotAuth, userController.profile_get);
 
 router.get("/", userController.home_get);
 

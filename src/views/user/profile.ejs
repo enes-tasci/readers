@@ -6,12 +6,32 @@
     <title>Document</title>
 </head>
 <body>
+    <form method="post" style="display: none;" class="form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="password" name="password" placeholder="Mevcut Şifren">
+        <input type="password" name="newPassword" placeholder="Yeni Şifren">
+        <input type="password" name="newPassword2" placeholder="Yeni Şifren Tekrar">
+        <button>Kaydet</button>
+    </form>
+
     <h1>Profile</h1>
     <a href="/">Anasayfa</a>
     <h2>İSİM: <%= user.name %></h2>
     <h2>KULLANICI ADI: <%= user.username %></h2>
+    <h2>OKUNAN KİTAP SAYISI: <%= bookRead %></h2>
+    <h2>OKUNAN SAYFA SAYISI: <%= pageRead %></h2>
     <a href="/kitap-ekle">Kitap Ekle</a><br>
     <a href="/kitap-listesi">Kitap Listesi</a><br>
+    <button class="changePassword">Şifremi Değiştir</button><br>
     <a href="/cikis-yap">Cıkış Yap</a>
+
+    <script>
+        const form = document.querySelector(".form");
+        const button = document.querySelector(".changePassword");
+        
+        button.addEventListener("click",()=>{
+            form.style.display = "block";
+        });
+    </script>
 </body>
 </html>

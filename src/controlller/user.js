@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const slugify = require("../helpers/slugfield");
+const bcrypt = require("bcryptjs");
 
 exports.book_details_post = async (req,res) => {
     const username = req.session.username;
@@ -74,12 +75,49 @@ exports.book_add_get = (req,res) => {
     res.render("user/book-add");
 };
 
+exports.profile_post = async (req,res) => {
+    const username = req.session.username;
+    const password = req.body.password;
+    const newPassword = req.body.newPassword;
+    const newPassword2 = req.body.newPassword2;
+
+    if(password==newPassword || password.length<3 || newPassword.length<3 ||
+        newPassword2.length<3 || newPassword!=newPassword2
+    ){
+        return res.send("Hatalı Bilgiler!");
+    };
+
+    const user = await User.findOne({username:username});
+    
+    const passwordCheck = await bcrypt.compare(password,user.password);
+    
+    if(!passwordCheck) return res.send("Yanlış şifre!");
+
+    const hashPassword = await bcrypt.hashSync(newPassword,10);
+    user.password = hashPassword;
+    await user.save();
+
+    res.redirect("/profil");
+};
+
 exports.profile_get = async (req,res) => {
     const username = req.session.username;
     const user = await User.findOne({username:username});
     
+    let bookRead = 0;
+    let pageRead = 0;
+    
+    user.books.forEach(book => {
+        if(book.status=="Okundu") {
+            bookRead++;
+            pageRead+=book.pageCount
+        };
+    });
+
     res.render("user/profile",{
-        user: user
+        user: user,
+        bookRead: bookRead,
+        pageRead: pageRead
     });
 };
 

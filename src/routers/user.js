@@ -8,6 +8,10 @@ const auth = require("../middleware/authControl");
 const csrf = require("../middleware/csrf");
 
 // PAGES
+router.post("/kitap-listesi/:slug", auth.isNotAuth, userController.book_details_post);
+
+router.get("/kitap-listesi/:slug", csrf, auth.isNotAuth, userController.book_details_get);
+
 router.get("/kitap-listesi", auth.isNotAuth, userController.book_list_get);
 
 router.post("/kitap-ekle", auth.isNotAuth, userController.book_add_post);

@@ -13,17 +13,18 @@ const Book = mongoose.Schema({
         type: Number,
         required: true
     },
-    comment: {
-        type: String
-    },
     status: {
         type: String,
         required: true
     },
-    date: {
-        type: Date,
-        default: Date.now
+    link: {
+        type: String,
+        required: true
     },
+    date: {
+        type: String,
+        default: new Date().toLocaleDateString("tr-TR")
+    }    
 },{timestamps:false});
 
 module.exports = Book

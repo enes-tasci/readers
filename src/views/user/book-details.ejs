@@ -11,7 +11,8 @@
     <h2><span style="color:orangered">Kitap İsmi: </span><%= book.name %></h2>
     <h2><span style="color:orangered">Kitap Yazarı: </span><%= book.writer %></h2>
     <h2><span style="color:orangered">Durum: </span><%= book.status %></h2>
-    <h2><span style="color:orangered">Kayıt Tarihi: </span><%= book.date %></h2>
+    <h2><span style="color:orangered">Başlangıç Tarihi: </span><%= book.startDate %></h2>
+    <h2><span style="color:orangered">Bitiş Tarihi: </span><%= book.endDate %></h2>
     <% if (book.status=="Yarıda Bırakıldı") { %>
      <form method="post">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
@@ -19,11 +20,13 @@
         <button name="btn" value="Okunuyor">Okumaya Devam Et</button>
      </form>
     <% } else if (book.status=="Okunuyor") { %>
-        <form method="post">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <button name="btn" value="Okundu">Okudum</button>
-            <button name="btn" value="Yarıda Bırakıldı">Yarıda Bırak</button>
-         </form>
+     <form method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button name="btn" value="Okundu">Okudum</button>
+        <button name="btn" value="Yarıda Bırakıldı">Yarıda Bırak</button>
+     </form>
+    <% } else { %>
+     <a href="/kitap-listesi">Geri Dön</a>
     <% } %>
 </body>
 </html>

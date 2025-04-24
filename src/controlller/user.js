@@ -7,11 +7,22 @@ exports.book_details_post = async (req,res) => {
     const link = req.params.slug;
     const status = req.body.btn;
 
-    await User.updateOne(
-        { username, "books.link": link },
-        { $set: { "books.$.status": status } }
-    );
+    if(status!="Okundu" && status!="Okunuyor" && status!="Yarıda Bırakıldı"){
+        return res.send("Hata!");
+    };
     
+    const user = await User.findOne({username:username});
+    const book = user.books.find(book => book.link == link);
+    if(!book) return res.send("Kitap Bulunamadı.");
+    
+    book.status = status;
+    book.endDate = "-"
+
+    if(status=="Okundu"){
+        book.endDate = new Date().toLocaleDateString("tr-TR");
+    };
+    await user.save();
+
     res.redirect(`/kitap-listesi/${link}`);
 };
 
@@ -47,7 +58,7 @@ exports.book_add_post = async (req,res) => {
     const name = req.body.name.trim();
     const writer = req.body.writer.trim();
     const pageCount = req.body.pageCount.trim();
-    const status = req.body.status.trim();
+    const status = "Okunuyor";
     const link = slugify(name);
 
     const book = {
@@ -55,7 +66,7 @@ exports.book_add_post = async (req,res) => {
         writer: writer,
         pageCount: pageCount,
         status: status,
-        link: link
+        link: link,
     };
 
     await User.updateOne(
@@ -66,9 +77,7 @@ exports.book_add_post = async (req,res) => {
             }
         }
     );
-
     res.redirect("/profil");
-
 };
 
 exports.book_add_get = (req,res) => {

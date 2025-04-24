@@ -21,10 +21,14 @@ const Book = mongoose.Schema({
         type: String,
         required: true
     },
-    date: {
+    startDate: {
         type: String,
         default: new Date().toLocaleDateString("tr-TR")
-    }    
+    },
+    endDate: {
+        type: String,
+        default: "-"
+    }
 },{timestamps:false});
 
 module.exports = Book

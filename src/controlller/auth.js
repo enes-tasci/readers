@@ -1,5 +1,8 @@
-const User = require("../models/user");
+// IMPORT LIBRARY
 const bcrypt = require("bcryptjs");
+
+// IMPORT FILES
+const User = require("../models/user");
 
 exports.logout = (req,res) => {
     delete req.session.isAuth;
@@ -12,8 +15,8 @@ exports.login_get = (req,res)=>{
 };
 
 exports.login_post = async (req,res)=>{
-    const username = req.body.username;
-    const password = req.body.password;
+    const username = req.body.username.trim();
+    const password = req.body.password.trim();
 
     if(username.length<3 || password.length<3) return res.send("Yanlış kullanıcı adı veya şifre.");
     

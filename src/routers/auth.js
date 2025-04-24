@@ -4,16 +4,18 @@ const router = express();
 
 //IMPORT FILES
 const authController = require("../controlller/auth");
+const auth = require("../middleware/authControl");
+const csrf = require("../middleware/csrf");
 
 // PAGES
-router.get("/cikis-yap", authController.logout);
+router.get("/cikis-yap", auth.isNotAuth, authController.logout);
 
-router.get("/giris-yap", authController.login_get);
+router.get("/giris-yap", csrf, auth.isAuth, authController.login_get);
 
-router.post("/giris-yap", authController.login_post);
+router.post("/giris-yap", auth.isAuth, authController.login_post);
 
-router.get("/kayit-ol", authController.signup_get);
+router.get("/kayit-ol", csrf, auth.isAuth, authController.signup_get);
 
-router.post("/kayit-ol", authController.signup_post);
+router.post("/kayit-ol", auth.isAuth, authController.signup_post);
 
 module.exports = router;

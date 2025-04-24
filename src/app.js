@@ -5,6 +5,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const mongoStore = require("connect-mongo");
+const csurf = require("csurf");
 
 // IMPORT FILE
 const config = require("./config/config");
@@ -30,6 +31,7 @@ app.use(session({
         maxAge: 1000*60*60*48
     }
 }));
+app.use(csurf());
 
 // PAGES
 app.use(locals);

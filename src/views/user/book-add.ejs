@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Kitap Ekle</h1>
+    <a href="/">Anasayfa</a>
+    <form method="post" autocomplete="off">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="text" name="name" placeholder="Kitap İsmi">
+        <input type="text" name="writer" placeholder="Yazar">
+        <input type="number" name="pageCount" placeholder="Sayfa Sayısı">
+        <textarea name="comment" placeholder="Bu Kitap Hakkında Düşüncelerin"></textarea>
+        <div class="sa"><input type="radio" name="status" value="start"><span>Okumaya Başladım</span></div>
+        <div><input type="radio" name="status" value="stop"><span>Yarıda Bıraktım</span></div>
+        <div><input type="radio" name="status" value="finish"><span>Bitirdim</span></div>
+        <button>Kitabı Ekle</button>
+    </form>
+</body>
+</html>

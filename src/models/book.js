@@ -14,13 +14,16 @@ const Book = mongoose.Schema({
         required: true
     },
     comment: {
+        type: String
+    },
+    status: {
         type: String,
-        required: false
+        required: true
     },
     date: {
         type: Date,
         default: Date.now
-    }
+    },
 },{timestamps:false});
 
 module.exports = Book

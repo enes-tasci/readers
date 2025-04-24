@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Okuduklarım</h1>
+    <a href="/">Anasayfa</a>
+    <table border="1">
+        <tr>
+            <th>İSİM</th>
+            <th>YAZAR</th>
+            <th>SAYFA SAYISI</th>
+            <th>DURUM</th>
+            <th>İŞLEM</th>
+        </tr>
+        <% books.forEach(book => { %>
+         <tr>
+            <td><%= book.name %></td>
+            <td><%= book.writer %></td>
+            <td><%= book.pageCount %></td>
+            <td><%= book.status %></td>
+            <td><a href="/kitap/<%= book.name %>"><button>Düzenle</button></a></td>
+         </tr>
+        <% }) %>
+    </table>
+</body>
+</html>

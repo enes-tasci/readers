@@ -1,4 +1,6 @@
 const {mongoose,Schema} = require("mongoose");
+const Book = require("../models/book");
+
 const User = mongoose.Schema({
     name: {
         type: String,
@@ -15,9 +17,8 @@ const User = mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    books: [Book]
 },{timestamps: false});
 
-const userModel = mongoose.model("User",User);
-
-module.exports = userModel;
+module.exports = mongoose.model("User",User);;

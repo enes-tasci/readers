@@ -38,6 +38,7 @@ exports.login_post = async (req,res)=>{
         };
         req.session.isAuth = true;
         req.session.username = username;
+        req.session.name = user.name;
 
         res.redirect("/");
     });

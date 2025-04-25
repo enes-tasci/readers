@@ -1,0 +1,44 @@
+<style>
+    ul li{
+        margin: 0px 10px
+    }
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding: 15px 20px; font-size: 17px;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/" style="color:greenyellow; font-size: 25px;">READERS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav" style="margin: 0px 10px">
+          <li class="nav-item">
+            <a class="nav-link <%= (activeLink=="/") ? "active" : "" %>" aria-current="page" href="/">Anasayfa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= (activeLink=="/kitap-listesi") ? "active" : "" %>" href="/kitap-listesi">Kitap Listem</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= (activeLink=="/hakkinda") ? "active" : "" %>" href="/hakkinda">Hakkında</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= (activeLink=="/iletisim") ? "active" : "" %>" href="/iletisim">İletişim</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+            <% if (isAuth) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profil">Profil</a>
+                </li>
+            <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/giris-yap">Giriş Yap</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/kayit-ol">Kayıt Ol</a>
+                </li>
+            <% } %>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>

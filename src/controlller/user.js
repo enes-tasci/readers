@@ -27,6 +27,8 @@ exports.book_details_post = async (req,res) => {
 };
 
 exports.book_details_get = async (req,res) => {
+    console.log(req.path);
+    
     const username = req.session.username;
     const link = req.params.slug;
     const bookFind = await User.findOne(
@@ -166,6 +168,6 @@ exports.profile_get = async (req,res) => {
     });
 };
 
-exports.home_get = async (req,res)=>{
+exports.home_get = async (req,res)=>{    
     res.render("user/index");
 };

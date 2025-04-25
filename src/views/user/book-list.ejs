@@ -30,5 +30,8 @@
          </tr>
         <% }) %>
     </table>
+    <% for( let a=0; a<pageCount; a++) { %>
+    <a href="?page=<%= a %>">Sayfa: <%= a+1 %></a>
+    <% } %>
 </body>
 </html>

@@ -8,9 +8,11 @@ const auth = require("../middleware/authControl");
 const csrf = require("../middleware/csrf");
 
 // PAGES
-router.post("/kitap-listesi/:slug", auth.isNotAuth, userController.book_details_post);
+router.get("/kitap-listesi/:status", auth.isNotAuth, userController.book_filter_get);
 
-router.get("/kitap-listesi/:slug", csrf, auth.isNotAuth, userController.book_details_get);
+router.post("/kitap/:slug", auth.isNotAuth, userController.book_details_post);
+
+router.get("/kitap/:slug", csrf, auth.isNotAuth, userController.book_details_get);
 
 router.get("/kitap-listesi", auth.isNotAuth, userController.book_list_get);
 

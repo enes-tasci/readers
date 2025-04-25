@@ -43,6 +43,20 @@ exports.book_details_get = async (req,res) => {
     });
 };
 
+exports.book_filter_get = async (req,res) => {
+    const status = req.params.status;
+    const username = req.session.username;
+    const user = await User.findOne({username:username}).select({books:1});
+    let books;
+    if(status=="okunanlar") books = user.books.filter(book => book.status=="Okundu");
+    else if(status=="suan-okunanlar") books = user.books.filter(book => book.status=="Okunuyor");
+    else if(status=="yarida-birakilanlar") books = user.books.filter(book => book.status=="Yarıda Bırakıldı");
+
+    res.render("user/book-list",{
+        books:books
+    });
+};
+
 exports.book_list_get = async (req,res) => {
     const username = req.session.username;
 

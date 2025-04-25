@@ -31,7 +31,13 @@ app.use(session({
         maxAge: 1000*60*60*48
     }
 }));
-app.use(csurf());
+app.use((req,res,next)=>{
+    if(req.session.isAuth){
+        csurf()(req,res,next);
+    }else{
+        next();
+    }
+});
 
 // PAGES
 app.use(locals);

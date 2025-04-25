@@ -5,9 +5,14 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 
 exports.logout = (req,res) => {
-    delete req.session.isAuth;
-    delete req.session.username
-    res.redirect("/");
+    req.session.destroy(err => {
+        if (err) {
+            console.log('Bir hata oluştu.', err);
+            return res.send("Bir hata oluştu.");
+        }
+        res.clearCookie('connect.sid');
+        res.redirect('/giris-yap');
+    });
 };
 
 exports.login_get = (req,res)=>{

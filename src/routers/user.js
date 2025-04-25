@@ -12,17 +12,17 @@ router.get("/kitap-listesi/:status", auth.isNotAuth, userController.book_filter_
 
 router.post("/kitap/:slug", auth.isNotAuth, userController.book_details_post);
 
-router.get("/kitap/:slug", csrf, auth.isNotAuth, userController.book_details_get);
+router.get("/kitap/:slug", auth.isNotAuth, csrf, userController.book_details_get);
 
 router.get("/kitap-listesi", auth.isNotAuth, userController.book_list_get);
 
 router.post("/kitap-ekle", auth.isNotAuth, userController.book_add_post);
 
-router.get("/kitap-ekle", csrf, auth.isNotAuth, userController.book_add_get);
+router.get("/kitap-ekle", auth.isNotAuth, csrf, userController.book_add_get);
 
 router.post("/profil", auth.isNotAuth, userController.profile_post);
 
-router.get("/profil", csrf, auth.isNotAuth, userController.profile_get);
+router.get("/profil", auth.isNotAuth, csrf, userController.profile_get);
 
 router.get("/", userController.home_get);
 

@@ -12,24 +12,29 @@
     <a href="/kitap-listesi/okunanlar">Okunanlar</a><br>
     <a href="/kitap-listesi/suan-okunanlar">Şuan Okunanlar</a><br>
     <a href="/kitap-listesi/yarida-birakilanlar">Yarıda Bırakılanlar</a><br><br>
-    <table border="1">
-        <tr>
-            <th>İSİM</th>
-            <th>YAZAR</th>
-            <th>SAYFA SAYISI</th>
-            <th>DURUM</th>
-            <th>İŞLEM</th>
-        </tr>
-        <% books.forEach(book => { %>
-         <tr>
-            <td><%= book.name %></td>
-            <td><%= book.writer %></td>
-            <td><%= book.pageCount %></td>
-            <td><%= book.status %></td>
-            <td><a href="/kitap/<%= book.link %>"><button>Düzenle</button></a></td>
-         </tr>
-        <% }) %>
-    </table>
+    <% if (bookCount==0) { %>
+     <h1>Kitap Yok</h1>
+    <% } else { %>
+        <h2>Kitap Sayısı: <%= bookCount %></h2>
+        <table border="1">
+            <tr>
+                <th>İSİM</th>
+                <th>YAZAR</th>
+                <th>SAYFA SAYISI</th>
+                <th>DURUM</th>
+                <th>İŞLEM</th>
+            </tr>
+            <% books.forEach(book => { %>
+             <tr>
+                <td><%= book.name %></td>
+                <td><%= book.writer %></td>
+                <td><%= book.pageCount %></td>
+                <td><%= book.status %></td>
+                <td><a href="/kitap/<%= book.link %>"><button>Düzenle</button></a></td>
+             </tr>
+            <% }) %>
+        </table>
+    <% } %>
     <% for( let a=0; a<pageCount; a++) { %>
     <a href="?page=<%= a %>">Sayfa: <%= a+1 %></a>
     <% } %>

@@ -23,7 +23,7 @@ exports.login_post = async (req,res)=>{
     const username = req.body.username.trim();
     const password = req.body.password.trim();
 
-    if(username.length<3 || password.length<3) return res.send("Yanlış kullanıcı adı veya şifre.");
+    if(username.length<3 || password.length<9) return res.send("Yanlış kullanıcı adı veya şifre.");
     
     const user = await User.findOne({username:username});
     if(!user) return res.send("Yanlış kullanıcı adı veya şifre.");
@@ -54,13 +54,10 @@ exports.signup_post = async (req,res)=>{
     const password2 = req.body.password2;
     const hashPassword = await bcrypt.hashSync(password,10);
 
-    if(name.length<3 || username.length<3 || password.length<3 || password2.length<3){
-        return res.send("Değerler en az 3 karakter olmalıdır.");
-    };
-    if(password==name || password==username) {
-        return res.send("Şifreniz isiminizden farklı olmalıdır.");
-    }
-    if(password!=password2) return res.send("Şifreler uyuşmuyor.");
+    if(name.length<3 || username.length<3) return res.send("Değerler en az 3 karakter olmalıdır.");
+    else if(password.length<9 || password2.length<9) return res.send("Parolanız en az 9 karakter olmalıdır.");
+    else if(password==name || password==username) return res.send("Şifreniz isiminizden farklı olmalıdır.");
+    else if(password!=password2) return res.send("Şifreler uyuşmuyor.");
 
     const user = await User.findOne({username:username}).select({username:1});
     if(user) return res.send("Bu kullanıcı adı kullanılıyor.");

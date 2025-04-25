@@ -23,7 +23,7 @@ exports.book_details_post = async (req,res) => {
     };
     await user.save();
 
-    res.redirect(`/kitap-listesi/${link}`);
+    res.redirect(`/profil`);
 };
 
 exports.book_details_get = async (req,res) => {
@@ -51,7 +51,8 @@ exports.book_filter_get = async (req,res) => {
     if(status=="okunanlar") booksFilter = user.books.filter(book => book.status=="Okundu");
     else if(status=="suan-okunanlar") booksFilter = user.books.filter(book => book.status=="Okunuyor");
     else if(status=="yarida-birakilanlar") booksFilter = user.books.filter(book => book.status=="Yarıda Bırakıldı");
-    
+    else return res.send("Hata!");
+
     const page = req.query.page || 0;
     const bookCount = booksFilter.length;
 
@@ -64,6 +65,7 @@ exports.book_filter_get = async (req,res) => {
 
     res.render("user/book-list",{
         books:books,
+        bookCount: bookCount,
         pageCount: pageCount
     });
 };
@@ -84,6 +86,7 @@ exports.book_list_get = async (req,res) => {
 
     res.render("user/book-list",{
         books:books,
+        bookCount: bookCount,
         pageCount: pageCount
     });
 };
@@ -95,6 +98,8 @@ exports.book_add_post = async (req,res) => {
     const pageCount = req.body.pageCount.trim();
     const status = "Okunuyor";
     const link = slugify(name);
+
+    if(name.length<3 || writer.length<3 || pageCount<3) return res.send("Hatalı bilgiler!");
 
     const book = {
         name: name,
@@ -121,8 +126,8 @@ exports.profile_post = async (req,res) => {
     const newPassword = req.body.newPassword;
     const newPassword2 = req.body.newPassword2;
 
-    if(password==newPassword || password.length<3 || newPassword.length<3 ||
-        newPassword2.length<3 || newPassword!=newPassword2
+    if(password==newPassword || password.length<9 || newPassword.length<9 ||
+        newPassword2.length<9 || newPassword!=newPassword2
     ){
         return res.send("Hatalı Bilgiler!");
     };

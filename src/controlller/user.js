@@ -69,14 +69,10 @@ exports.book_add_post = async (req,res) => {
         link: link,
     };
 
-    await User.updateOne(
-        {username},
-        {
-            $push: {
-                books: book
-            }
-        }
-    );
+    const user = await User.findOne({username:username});
+    user.books.push(book);
+    await user.save();
+
     res.redirect("/profil");
 };
 

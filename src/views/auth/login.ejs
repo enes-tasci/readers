@@ -3,21 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        a{
-            margin: 40px 0;
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>READERS | Giriş Yap</title>
 </head>
+
 <body>
-    <h1>Anasayfa</h1>
-    <form method="post" autocomplete="off">
-        <input type="text" name="username" placeholder="Kullanıcı Adınız">
-        <input type="password" name="password" placeholder="Şifreniz">
-        <button>Giriş Yap</button>
-    </form>
-    <a href="/kayit-ol">Kayıt Ol</a>
+
+    <%- include("../partials/navbar") %>
+
+        <div class="login-container">
+            <h1 style="text-align: center; margin: 30px 0;">GİRİŞ YAP</h1>
+            <div class="formWrap">
+                <div class="formDiv">
+                    <form method="post" autocomplete="off">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" placeholder="Kullanıcı Adınız">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Şifreniz">
+                        </div>
+                        <p>Hesabın yok mu? <a class="link-offset-2 link-underline link-underline-opacity-10" href="/kayit-ol">Kayıt Ol</a></p>
+                        <div class="text-center" style="margin-top: 30px;">
+                            <button type="submit" class="btn btn-primary">Giriş Yap</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

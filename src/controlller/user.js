@@ -23,12 +23,10 @@ exports.book_details_post = async (req,res) => {
     };
     await user.save();
 
-    res.redirect(`/profil`);
+    res.redirect(`/kitap-listesi`);
 };
 
 exports.book_details_get = async (req,res) => {
-    console.log(req.path);
-    
     const username = req.session.username;
     const link = req.params.slug;
     const bookFind = await User.findOne(
@@ -56,6 +54,7 @@ exports.book_filter_get = async (req,res) => {
     else return res.send("Hata!");
 
     const page = req.query.page || 0;
+    if(page<0) return res.redirect("?page=0");
     const bookCount = booksFilter.length;
 
     const size = 10;
@@ -68,7 +67,8 @@ exports.book_filter_get = async (req,res) => {
     res.render("user/book-list",{
         books:books,
         bookCount: bookCount,
-        pageCount: pageCount
+        pageCount: pageCount,
+        page: page
     });
 };
 
@@ -77,6 +77,8 @@ exports.book_list_get = async (req,res) => {
     const user = await User.findOne({username:username});
 
     const page = req.query.page || 0;
+    if(page<0) return res.redirect("?page=0");
+    
     const bookCount = user.books.length;
 
     const size = 10;
@@ -89,7 +91,8 @@ exports.book_list_get = async (req,res) => {
     res.render("user/book-list",{
         books:books,
         bookCount: bookCount,
-        pageCount: pageCount
+        pageCount: pageCount,
+        page: page
     });
 };
 
@@ -124,9 +127,9 @@ exports.book_add_get = (req,res) => {
 
 exports.profile_post = async (req,res) => {
     const username = req.session.username;
-    const password = req.body.password;
-    const newPassword = req.body.newPassword;
-    const newPassword2 = req.body.newPassword2;
+    const password = req.body.password.trim();
+    const newPassword = req.body.newPassword.trim();
+    const newPassword2 = req.body.newPassword2.trim();
 
     if(password==newPassword || password.length<9 || newPassword.length<9 ||
         newPassword2.length<9 || newPassword!=newPassword2
@@ -168,6 +171,7 @@ exports.profile_get = async (req,res) => {
     });
 };
 
-exports.home_get = async (req,res)=>{    
+exports.home_get = async (req,res)=>{
+    // require("../helpers/dummyData")();    
     res.render("user/index");
 };

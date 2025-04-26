@@ -3,23 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        a{
-            margin: 40px 0;
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>READERS | Kayıt Ol</title>
 </head>
 <body>
-    <h1>Anasayfa</h1>
-    <form method="post" autocomplete="off">
-        <input type="text" name="name" placeholder="İsminiz">
-        <input type="text" name="username" placeholder="Kullanıcı Adınız">
-        <input type="password" name="password" placeholder="Şifreniz">
-        <input type="password" name="password2" placeholder="Şifreniz Tekrar">
-        <button>Kayıt Ol</button>
-    </form>
-    <a href="/giris-yap">Giriş Yap</a>
+    <%- include("../partials/navbar") %>
+
+        <div class="signup-container">
+            <h1 style="text-align: center; margin: 30px 0;">KAYIT OL</h1>
+            <div class="formWrap">
+                <div class="formDiv">
+                    <form method="post" autocomplete="off">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" placeholder="İsminiz">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" placeholder="Kullanıcı Adınız">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Şifreniz">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="password2" placeholder="Şifreniz Tekrar">
+                        </div>
+                        <p>Hesabın var mı? <a class="link-offset-2 link-underline link-underline-opacity-10" href="/giris-yap">Giriş Yap</a></p>
+                        <div class="text-center" style="margin-top: 30px;">
+                            <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

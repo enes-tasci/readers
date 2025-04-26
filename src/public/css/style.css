@@ -1,0 +1,296 @@
+@import url("https://fonts.googleapis.com/css2?family=Electrolize&display=swap");
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 10px;
+    opacity: 0.5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(171, 171, 171);
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+body{
+    background-color: #313131;
+    color: white;
+    font-family: "Electrolize", sans-serif;
+}
+/* HOME START */
+.home-container{
+    display: flex;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.home-container button{
+    width: 200px;
+    height: 40px;
+    background-color: rgb(140, 220, 20);
+    color: black;
+    border: 2px solid black;
+    border-radius: 20px;
+    position: relative;
+    animation: buttonAnim 1s ease-in-out;
+}
+.home-container div{
+    margin: 20px 0;
+}
+.home-container .cont1{
+    position: relative;
+    animation: topAnim 1s ease-in-out;
+}
+.home-container .cont2{
+    position: relative;
+    animation: bottomAnim 1s ease-in-out;
+}
+@keyframes topAnim{
+    0%{
+        top: -60px;
+        opacity: 0;
+    }
+    100%{
+        top: 0px;
+        opacity: 1;
+    }
+}
+@keyframes bottomAnim{
+    0%{
+        top: 60px;
+        opacity: 0;
+    }
+    100%{
+        top: 0px;
+        opacity: 1;
+    }
+}
+@keyframes buttonAnim {
+    0%{
+        top: 80px;
+        opacity: 0;
+    }
+    100%{
+        top: 0px;
+        opacity: 1;
+    }
+}
+/* HOME END */
+
+/* LOGIN START */
+.login-container{
+    height: 100vh;
+}
+.login-container .formWrap{
+    display: flex;
+    justify-content: center;
+}
+.login-container .formWrap .formDiv{
+    width: 400px;
+    margin: 30px 0;
+}
+/* LOGIN END */
+
+/* SIGNUP START */
+.signup-container{
+    height: 100vh;
+}
+.signup-container .formWrap{
+    display: flex;
+    justify-content: center;
+}
+.signup-container .formWrap .formDiv{
+    width: 400px;
+    margin: 30px 0;
+}
+/* SIGNUP END */
+
+/* PROFILE START */
+.profile-container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 20px;
+}
+.profile-container .list-group{
+    width: 50%;
+}
+.profile-container .list-group li{
+    background-color: #222;
+    color: white;
+    font-size: 21px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 80px;
+}
+.profile-container .list-group li a,
+.profile-container .list-group li button{
+    width: 150px;
+}
+.profile-container .list-group li span:first-child{
+    color: orange;
+}
+.changePasswordDiv{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1000;
+    animation: changeTopAnim 0.5s ease-in-out
+}
+.changePasswordDiv form{
+    background-color: #3b3b3b;
+    color: white;
+    width: 600px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    border: 1px solid black;
+    box-shadow: 0 0 20px black;
+}
+.changePasswordDiv form i{
+    position: absolute;
+    top:15px;
+    right: 20px;
+    font-size:25px;
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+}
+.changePasswordDiv form i:hover{
+    color: orange;
+}
+.changePasswordDiv form div{
+    width: 80%;
+    margin: 20px 0;
+}
+@keyframes changeTopAnim {
+    0%{
+        top: 30%;
+        opacity: 0;
+    }
+    100%{
+        top: 50%;
+        opacity: 1;
+    }
+}
+@keyframes changeBottomAnim {
+    0%{
+        top: 50%;
+        opacity: 1;
+    }
+    100%{
+        top: 30%;
+        opacity: 0;
+    }
+}
+/* PROFILE END */
+
+/* BOOK ADD START */
+.book-add-container{
+    height: 100vh;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.book-add-container form{
+    width: 60%;
+}
+/* BOOK ADD END */
+
+/* BOOK LIST START */
+.book-list-container{
+    padding: 20px 20px;
+}
+.book-list-container .pagination a{
+    background-color: #222;
+    color: white;
+}
+.book-list-container .buttons{
+    display: flex;
+    justify-content: center;
+}
+.book-list-container .buttons a{
+    margin: 0 20px;
+}
+/* BOOK LIST END */
+
+/* BOOK DETAILS START */
+.book-details-container{
+    padding: 20px 0;
+}
+.book-details-container .book-details{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+.book-details-container .book-details .list-group{
+    width: 50%;
+}
+.book-details-container .list-group li{
+    background-color: #3b3b3b;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 40px;
+    text-align: center;
+    font-size: 21px;
+}
+.book-details-container .list-group li span:first-child{
+    color: greenyellow;
+}
+.book-details-container .back-button{
+    display: flex;
+    justify-content: center;
+}
+.book-details-container .list-group .islem form{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.book-details-container .list-group .islem form button{
+    margin: 10px 40px;
+}
+/* BOOK DETAILS END */
+
+/* NOT FOUND START */
+.not-found-container{
+    padding: 50px 20px;
+    height: 80vh;
+}
+.not-found-container .images{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+/* NOT FOUND END */

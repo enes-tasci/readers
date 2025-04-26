@@ -3,35 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>READERS | Profil</title>
 </head>
 <body>
-    <form method="post" style="display: none;" class="form">
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-        <input type="password" name="password" placeholder="Mevcut Şifren">
-        <input type="password" name="newPassword" placeholder="Yeni Şifren">
-        <input type="password" name="newPassword2" placeholder="Yeni Şifren Tekrar">
-        <button>Kaydet</button>
-    </form>
+    <%- include("../partials/navbar") %>  
 
-    <h1>Profile</h1>
-    <a href="/">Anasayfa</a>
-    <h2>İSİM: <%= user.name %></h2>
-    <h2>KULLANICI ADI: <%= user.username %></h2>
-    <h2>OKUNAN KİTAP SAYISI: <%= bookRead %></h2>
-    <h2>OKUNAN SAYFA SAYISI: <%= pageRead %></h2>
-    <a href="/kitap-ekle">Kitap Ekle</a><br>
-    <a href="/kitap-listesi">Kitap Listesi</a><br>
-    <button class="changePassword">Şifremi Değiştir</button><br>
-    <a href="/cikis-yap">Cıkış Yap</a>
+    <div class="changePasswordDiv">
+        <form method="post">
+            <i class="fa-solid fa-x close-icon"></i>
+            <h2>Şifre Yenile</h2>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div class="mb-3">
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Şifreniz">
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" id="exampleInputPassword1" name="newPassword" placeholder="Yeni Şifreniz">
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" id="exampleInputPassword1" name="newPassword2" placeholder="Yeni Şifreniz Tekrar">
+            </div>
+            <button class="btn btn-primary">Kaydet</button>
+        </form>
+    </div>
+
+    <div class="profile-container">
+        <h1 style="text-align:center; margin-bottom: 30px;">PROFİL</h1>
+        <ul class="list-group">
+            <li class="list-group-item sa"><span>İsim </span><span><%= user.name %></span></li>
+            <li class="list-group-item sa"><span>Kullanıcı Adı </span><span><%= user.username %></span></li>
+            <li class="list-group-item sa"><span>Okunan Kitap Sayısı </span><span><%= bookRead %></span></li>
+            <li class="list-group-item sa"><span>Okunan Sayfa Sayısı </span><span><%= pageRead %></span></li>
+            <li class="list-group-item sa"><a href="/kitap-ekle" class="btn btn-primary">Kitap Ekle</a><a href="/kitap-listesi" class="btn btn-primary">Kitap Listesi</a></li>
+            <li class="list-group-item sa"><button class="changeButton btn btn-warning">Şifremi Değiştir</button><a href="/cikis-yap" class="btn btn-danger">Çıkış Yap</a></li>
+        </ul>
+    </div>
 
     <script>
-        const form = document.querySelector(".form");
-        const button = document.querySelector(".changePassword");
-        
-        button.addEventListener("click",()=>{
-            form.style.display = "block";
+        const formDiv = document.querySelector(".changePasswordDiv");
+        const changeButton = document.querySelector(".changeButton");
+        const icon = document.querySelector(".close-icon");
+
+        changeButton.addEventListener("click",()=>{
+            formDiv.style.display="flex";
+        });
+        icon.addEventListener("click",()=>{
+            formDiv.style.animation="changeBottomAnim 0.5s ease-in-out";
+            setTimeout(()=>{
+                formDiv.style.display="none";
+                formDiv.style.animation="changeTopAnim 0.5s ease-in-out";
+            },500);
         });
     </script>
+
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

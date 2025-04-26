@@ -49,10 +49,10 @@ exports.signup_get = (req,res)=>{
 };
 
 exports.signup_post = async (req,res)=>{
-    const name = req.body.name;
-    const username = req.body.username;
-    const password = req.body.password;
-    const password2 = req.body.password2;
+    const name = req.body.name.trim().toUpperCase();
+    const username = req.body.username.trim();
+    const password = req.body.password.trim();
+    const password2 = req.body.password2.trim();
     const hashPassword = await bcrypt.hashSync(password,10);
 
     if(name.length<3 || username.length<3) return res.send("Değerler en az 3 karakter olmalıdır.");

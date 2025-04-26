@@ -3,40 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>READERS | Kitap Listesi</title>
 </head>
 <body>
-    <h1>Okuduklarım</h1>
-    <a href="/">Anasayfa</a><br><br>
-    <a href="/kitap-listesi">Tüm kitaplar</a><br>
-    <a href="/kitap-listesi/okunanlar">Okunanlar</a><br>
-    <a href="/kitap-listesi/suan-okunanlar">Şuan Okunanlar</a><br>
-    <a href="/kitap-listesi/yarida-birakilanlar">Yarıda Bırakılanlar</a><br><br>
-    <% if (bookCount==0) { %>
-     <h1>Kitap Yok</h1>
-    <% } else { %>
-        <h2>Kitap Sayısı: <%= bookCount %></h2>
-        <table border="1">
-            <tr>
-                <th>İSİM</th>
-                <th>YAZAR</th>
-                <th>SAYFA SAYISI</th>
-                <th>DURUM</th>
-                <th>İŞLEM</th>
-            </tr>
-            <% books.forEach(book => { %>
-             <tr>
-                <td><%= book.name %></td>
-                <td><%= book.writer %></td>
-                <td><%= book.pageCount %></td>
-                <td><%= book.status %></td>
-                <td><a href="/kitap/<%= book.link %>"><button>Düzenle</button></a></td>
-             </tr>
-            <% }) %>
-        </table>
-    <% } %>
-    <% for( let a=0; a<pageCount; a++) { %>
-    <a href="?page=<%= a %>">Sayfa: <%= a+1 %></a>
-    <% } %>
+
+    <%- include("../partials/navbar") %>
+
+    <div class="book-list-container">
+        <h1 style="text-align:center; margin-bottom: 40px;">Kitap Listesi</h1>
+        <div class="buttons">
+            <a href="/kitap-listesi" class="btn btn-success <%= (activeLink=="/kitap-listesi") ? "disabled" : "" %>">Tüm Kitaplar</a>
+            <a href="/kitap-listesi/okunanlar" class="btn btn-success <%= (activeLink=="/kitap-listesi/okunanlar") ? "disabled" : "" %>">Okunanlar</a>
+            <a href="/kitap-listesi/suan-okunanlar" class="btn btn-success <%= (activeLink=="/kitap-listesi/suan-okunanlar") ? "disabled" : "" %>">Şuan Okunanlar</a>
+            <a href="/kitap-listesi/yarida-birakilanlar" class="btn btn-success <%= (activeLink=="/kitap-listesi/yarida-birakilanlar") ? "disabled" : "" %>">Yarıda Bırakılanlar</a>
+        </div>
+
+        <% if (bookCount==0) { %>
+            <div class="alert alert-danger" role="alert" style="margin-top: 20px;">
+                Kitap Yok!
+            </div>
+        <% } else { %>
+            <table class="table table-dark table-striped" style="margin-top: 20px; text-align: center;">
+                <thead>
+                  <tr>
+                    <th scope="col">İSİM</th>
+                    <th scope="col">YAZAR</th>
+                    <th scope="col">SAYFA SAYISI</th>
+                    <th scope="col">DURUM</th>
+                    <th scope="col">İŞLEM</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% books.forEach(book => { %>
+                        <tr>
+                           <td><%= book.name %></td>
+                           <td><%= book.writer %></td>
+                           <td><%= book.pageCount %></td>
+                           <td><%= book.status %></td>
+                           <td><a href="/kitap/<%= book.link %>"><button class="btn btn-info">Düzenle</button></a></td>
+                        </tr>
+                       <% }) %>
+                </tbody>
+            </table>
+        <% } %>
+        <nav aria-label="Page navigation example" style="display:flex; justify-content: center;">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="?page=<%= page-1 %>" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <% for( let a=0; a<pageCount; a++) { %>
+                <li class="page-item"><a class="page-link <%= (a==page) ? "active" : "" %>" href="?page=<%= a %>"><%= a+1 %></a></li>
+              <% } %>
+              <li class="page-item">
+                <a class="page-link" href="?page=<%= parseInt(page)+1 %>" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+    </div>
+
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 </html>

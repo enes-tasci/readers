@@ -3,30 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>READERS | <%= book.name %></title>
 </head>
 <body>
-    <h1>Kitap Detayları</h1>
-    <a href="/">Anasayfa</a>
-    <h2><span style="color:orangered">Kitap İsmi: </span><%= book.name %></h2>
-    <h2><span style="color:orangered">Kitap Yazarı: </span><%= book.writer %></h2>
-    <h2><span style="color:orangered">Durum: </span><%= book.status %></h2>
-    <h2><span style="color:orangered">Başlangıç Tarihi: </span><%= book.startDate %></h2>
-    <h2><span style="color:orangered">Bitiş Tarihi: </span><%= book.endDate %></h2>
-    <% if (book.status=="Yarıda Bırakıldı") { %>
-     <form method="post">
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-        <button name="btn" value="Okundu">Okudum</button>
-        <button name="btn" value="Okunuyor">Okumaya Devam Et</button>
-     </form>
-    <% } else if (book.status=="Okunuyor") { %>
-     <form method="post">
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-        <button name="btn" value="Okundu">Okudum</button>
-        <button name="btn" value="Yarıda Bırakıldı">Yarıda Bırak</button>
-     </form>
-    <% } else { %>
-     <a href="/kitap-listesi">Geri Dön</a>
-    <% } %>
+
+    <%- include("../partials/navbar") %>
+
+    <div class="book-details-container">
+        <h1 style="text-align: center; margin-bottom: 20px;">Kitap Detayları</h1>
+        <div class="book-details">
+            <ul class="list-group">
+                <li class="list-group-item"><span>Kitap İsmi</span><span><%= book.name %></span></li>
+                <li class="list-group-item"><span>Kitap Yazarı</span><span><%= book.writer %></span></li>
+                <li class="list-group-item"><span>Sayfa Sayısı</span><span><%= book.pageCount %></span></li>
+                <li class="list-group-item"><span>Durum</span><span><%= book.status %></span></li>
+                <li class="list-group-item"><span>Başlangıç Tarihi</span><span><%= book.startDate %></span></li>
+                <li class="list-group-item"><span>Biriş Tarihi</span><span><%= book.endDate %></span></li>
+                <% if (book.status=="Yarıda Bırakıldı") { %>
+                    <li class="list-group-item islem">
+                        <form method="post">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button name="btn" value="Okundu" class="btn btn-success">Okudum</button>
+                            <button name="btn" value="Okunuyor" class="btn btn-primary">Okumaya Devam Et</button>
+                         </form>
+                    </li>
+                   <% } else if (book.status=="Okunuyor") { %>
+                    <li class="list-group-item islem">
+                        <form method="post">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button name="btn" value="Okundu" class="btn btn-success">Okudum</button>
+                            <button name="btn" value="Yarıda Bırakıldı" class="btn btn-danger">Yarıda Bırak</button>
+                         </form>
+                    </li>
+                   <% } %>
+            </ul>
+        </div>
+        <div class="back-button"><a href="/kitap-listesi" class="btn btn-secondary">Geri Dön</a></div>
+    </div>
+
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

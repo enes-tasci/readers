@@ -12,16 +12,34 @@
 
     <%- include("../partials/navbar") %>
 
+    <div class="alert-wrap alert alert-danger" role="alert" style="margin: 20px 0; display: none;"></div>
+    <script>
+        setTimeout(()=>{
+            document.querySelector(".alert-wrap").style.display = "none";
+        },3000);
+    </script>
+
+    <% if (message.text) { %>
+        <div class="alert-wrap-2 alert <%= message.color %>" role="alert" style="margin: 20px 0;">
+            <%= message.text %>
+        </div>
+        <script>
+            setTimeout(()=>{
+                document.querySelector(".alert-wrap-2").style.display = "none";
+            },3000);
+        </script>
+    <% } %>
+
         <div class="login-container">
             <h1 style="text-align: center; margin: 30px 0;">GİRİŞ YAP</h1>
             <div class="formWrap">
                 <div class="formDiv">
                     <form method="post" autocomplete="off">
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" placeholder="Kullanıcı Adınız">
+                            <input type="text" class="form-control username" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" placeholder="Kullanıcı Adınız">
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Şifreniz">
+                            <input type="password" class="form-control password" id="exampleInputPassword1" name="password" placeholder="Şifreniz">
                         </div>
                         <p>Hesabın yok mu? <a class="link-offset-2 link-underline link-underline-opacity-10" href="/kayit-ol">Kayıt Ol</a></p>
                         <div class="text-center" style="margin-top: 30px;">
@@ -32,7 +50,41 @@
             </div>
         </div>
 
+        <%- include("../partials/footer") %>
+
         <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            const form = document.querySelector("form");
+            const alertWrap = document.querySelector(".alert-wrap");
+            const username = document.querySelector(".username");
+            const password = document.querySelector(".password");
+    
+            form.addEventListener("submit",(e)=>{
+                if(username.value.length<3) {
+                    alertWrap.textContent = "Yanlış kullanıcı adı veya şifre.";
+                    alertWrap.style.display = "block";
+                    setTimeout(()=>{
+                        alertWrap.style.display = "none";
+                    },3000);
+                    return e.preventDefault();
+                }else if(password.value.length<9) {
+                    alertWrap.textContent = "Yanlış kullanıcı adı veya şifre.";
+                    alertWrap.style.display = "block";
+                    setTimeout(()=>{
+                        alertWrap.style.display = "none";
+                    },3000);
+                    return e.preventDefault();
+                }else if(password.value==username) {
+                    alertWrap.textContent = "Yanlış kullanıcı adı veya şifre.";
+                    alertWrap.style.display = "block";
+                    setTimeout(()=>{
+                        alertWrap.style.display = "none";
+                    },3000);
+                    return e.preventDefault();
+                }
+            });
+        </script>
 </body>
 
 </html>

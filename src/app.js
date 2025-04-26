@@ -13,6 +13,7 @@ const mongodb = require("./database/mongodb")();
 const User = require("./models/user");
 const auth = require("./routers/auth");
 const user = require("./routers/user");
+const book = require("./routers/book");
 const locals = require("./middleware/locals");
 
 // MIDDLEWARES
@@ -43,6 +44,7 @@ app.use((req,res,next)=>{
 // PAGES
 app.use(locals);
 app.use(auth);
+app.use(book);
 app.use(user);
 app.use((req,res)=>{
     res.render("user/not-found");

@@ -11,21 +11,39 @@
     <%- include("../partials/navbar") %>
 
     <div class="home-container">
-        <div class="cont1">
-            <h1>MERHABA OKUYUCU!</h1>
+        <div class="header">
+            <div class="header-content">
+                <h1>Merhaba Okuyucu!</h1>
+                <h3>Okuduğun kitapları kaydet, ilerlemeni takip et ve ilham al!</h3>
+                <% if (isAuth) { %>
+                    <a href="/kitap-listesi"><button>Kitap Listem</button></a>
+                <% } else { %>
+                    <a href="/giris-yap"><button>Hemen Başla!</button></a>
+                <% } %>
+            </div>
         </div>
-        <% if (isAuth) { %>
-            <div class="cont2">
-                <h3>Yeni başladığın kitabı ekleyebilir ve durumunu kontrol edebilirsin.</h3>
+        <div class="body">
+            <div class="body-head">
+                <h2>Neler Yapabilirsin?</h2>
             </div>
-            <a href="/kitap-listesi"><button>Kitap Listem</button></a>
-        <% } else { %>
-            <div class="cont2">
-                <h3>Okuduğun kitapların listesini tutmak istiyorsan doğru yerdesin.</h3>
+            <div class="body-content">
+                <div>
+                    <h3>Kitap Kaydet</h3>
+                    <p>Okuduğun kitapları hızlıca listeye ekleyebilirsin.</p>
+                </div>
+                <div>
+                    <h3>Kitap Listesini Takip Et</h3>
+                    <p>Listeden kitaplarına göz atabilirsin.</p>
+                </div>
+                <div>
+                    <h3>Kitap Durumunu Kontrol Et</h3>
+                    <p>Yarıda bıraktığın veya okuduğun kitapların durumunu değiştirebilirsin.</p>
+                </div>
             </div>
-            <a href="/giris-yap"><button>BAŞLAYALIM!</button></a>
-        <% } %>
+        </div>
     </div>
+
+    <%- include("../partials/footer") %>
 
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>

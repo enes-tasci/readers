@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>READER | Kitap Ekle</title>
+</head>
+<body>
+
+    <%- include("../partials/navbar") %>  
+
+    <div class="alert-wrap alert alert-danger" role="alert" style="margin: 20px 0; display: none;"></div>
+    <script>
+        setTimeout(()=>{
+            document.querySelector(".alert-wrap").style.display = "none";
+        },3000);
+    </script>
+
+
+    <div class="book-add-container">
+        <h1 style="text-align:center; margin: 30px 0;">Kitap Ekle</h1>
+        <form method="post" autocomplete="off">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div class="mb-3">
+                <input type="text" class="form-control name" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" placeholder="Kitap İsmi">
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control writer" id="exampleInputPassword1" name="writer" placeholder="Yazar">
+            </div>
+            <div class="mb-3">
+                <input type="number" class="form-control page-count" id="exampleInputPassword1" name="pageCount" placeholder="Sayfa Sayısı">
+            </div>
+            <div class="text-center" style="margin-top: 30px;">
+                <button type="submit" class="btn btn-primary">Kayıt Et</button>
+            </div>
+        </form>
+    </div>
+
+    <%- include("../partials/footer") %>
+
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const name = document.querySelector(".name");
+        const writer = document.querySelector(".writer");
+        const pageCount = document.querySelector(".page-count");
+        const form = document.querySelector("form");
+        const alertWrap = document.querySelector(".alert-wrap");
+
+        form.addEventListener("submit",(e)=>{
+            if(name.value.length<3 || writer.length<3 || pageCount.value<3){
+                alertWrap.textContent = "Değerler en az 3 karakter olmalıdır.";
+                alertWrap.style.display = "block";
+                setTimeout(()=>{
+                    alertWrap.style.display = "none";
+                },3000);
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

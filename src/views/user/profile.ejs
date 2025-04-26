@@ -9,7 +9,18 @@
     <title>READERS | Profil</title>
 </head>
 <body>
-    <%- include("../partials/navbar") %>  
+    <%- include("../partials/navbar") %>
+
+    <% if (message.text) { %>
+        <div class="alert-wrap-2 alert <%= message.color %>" role="alert" style="margin: 20px 0;">
+            <%= message.text %>
+        </div>
+        <script>
+            setTimeout(()=>{
+                document.querySelector(".alert-wrap-2").style.display = "none";
+            },3000);
+        </script>
+    <% } %>
 
     <div class="changePasswordDiv">
         <form method="post">
@@ -17,14 +28,16 @@
             <h2>Şifre Yenile</h2>
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <div class="mb-3">
-                <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Şifreniz">
+                <input type="password" class="form-control password" id="exampleInputPassword1" name="password" placeholder="Şifreniz">
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control" id="exampleInputPassword1" name="newPassword" placeholder="Yeni Şifreniz">
+                <input type="password" class="form-control newPassword" id="exampleInputPassword1" name="newPassword" placeholder="Yeni Şifreniz">
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control" id="exampleInputPassword1" name="newPassword2" placeholder="Yeni Şifreniz Tekrar">
+                <input type="password" class="form-control newPassword2" id="exampleInputPassword1" name="newPassword2" placeholder="Yeni Şifreniz Tekrar">
             </div>
+            <p style="color:orange;" class="new-password-alert">Yeni şifreniz en az 9 karakter olmalıdır.</p>
+            <p class="change-alert" style="color:orange;"></p>
             <button class="btn btn-primary">Kaydet</button>
         </form>
     </div>
@@ -41,10 +54,43 @@
         </ul>
     </div>
 
+    <%- include("../partials/footer") %>
+
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+
     <script>
         const formDiv = document.querySelector(".changePasswordDiv");
+        const form = document.querySelector("form");
+        const password = document.querySelector(".password");
+        const newPassword = document.querySelector(".newPassword");
+        const newPassword2 = document.querySelector(".newPassword2");
         const changeButton = document.querySelector(".changeButton");
+        const changeAlert = document.querySelector(".change-alert");
         const icon = document.querySelector(".close-icon");
+
+        document.addEventListener("keyup",()=>{
+            if(newPassword.value.length>8){
+                document.querySelector(".new-password-alert").style.color = "greenyellow";
+            }else{
+                document.querySelector(".new-password-alert").style.color = "orange";
+            }
+        });
+
+        form.addEventListener("submit",(e)=>{
+            if(password.value.length<9){
+                changeAlert.textContent = "Mevcut şifreniz yanlış.";
+                setTimeout(()=>{
+                    changeAlert.textContent = "";
+                },3000);
+                return e.preventDefault();
+            }else if(newPassword.value!=newPassword2.value){
+                changeAlert.textContent = "Şifreler uyuşmuyor.";
+                setTimeout(()=>{
+                    changeAlert.textContent = "";
+                },3000);
+                return e.preventDefault();
+            }
+        });
 
         changeButton.addEventListener("click",()=>{
             formDiv.style.display="flex";
@@ -57,7 +103,5 @@
             },500);
         });
     </script>
-
-    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

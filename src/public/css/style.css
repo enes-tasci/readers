@@ -41,68 +41,79 @@ body{
 }
 /* HOME START */
 .home-container{
+    height: 100vh;
+}
+.home-container .header{
+    width: 100%;
+    background-color: rgb(67, 11, 147);
     display: flex;
-    height: 80vh;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    text-align: center;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    padding-top: 30px;
+    box-shadow: 0 0 10px black;
+    border-bottom: 2px solid gray;
 }
-.home-container button{
-    width: 200px;
-    height: 40px;
-    background-color: rgb(140, 220, 20);
+.home-container .header *{
+    margin-bottom: 30px;
+}
+.home-container .header .header-content button{
+    width: 150px;
+    height: 45px;
+    background-color: white;
     color: black;
-    border: 2px solid black;
-    border-radius: 20px;
-    position: relative;
-    animation: buttonAnim 1s ease-in-out;
+    font-size: 17px;
+    border-radius: 10px;
+    border: 1px solid white;
+    box-shadow: 0 0 10px black;
+    transition: 0.4s ease-in-out;
 }
-.home-container div{
+.home-container .header .header-content button:hover{
+    background-color: rgb(174, 174, 174);
+}
+.home-container .body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.home-container .body .body-head{
     margin: 20px 0;
 }
-.home-container .cont1{
+.home-container .body .body-content{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+}
+.home-container .body .body-content div{
+    background-color: rgb(27, 27, 27);
+    width: 400px;
+    height: 200px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px black;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 10px;
     position: relative;
-    animation: topAnim 1s ease-in-out;
+    transition: 0.4s ease-in-out;
 }
-.home-container .cont2{
-    position: relative;
-    animation: bottomAnim 1s ease-in-out;
-}
-@keyframes topAnim{
-    0%{
-        top: -60px;
-        opacity: 0;
-    }
-    100%{
-        top: 0px;
-        opacity: 1;
-    }
-}
-@keyframes bottomAnim{
-    0%{
-        top: 60px;
-        opacity: 0;
-    }
-    100%{
-        top: 0px;
-        opacity: 1;
-    }
-}
-@keyframes buttonAnim {
-    0%{
-        top: 80px;
-        opacity: 0;
-    }
-    100%{
-        top: 0px;
-        opacity: 1;
-    }
+.home-container .body .body-content div:hover{
+    transform:scale(1.1);
+    box-shadow: 0 0 30px black;
 }
 /* HOME END */
 
 /* LOGIN START */
 .login-container{
-    height: 100vh;
+    height: 75vh;
 }
 .login-container .formWrap{
     display: flex;
@@ -116,7 +127,7 @@ body{
 
 /* SIGNUP START */
 .signup-container{
-    height: 100vh;
+    height: 75vh;
 }
 .signup-container .formWrap{
     display: flex;
@@ -130,7 +141,7 @@ body{
 
 /* PROFILE START */
 .profile-container{
-    height: 100vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -215,7 +226,7 @@ body{
 
 /* BOOK ADD START */
 .book-add-container{
-    height: 100vh;
+    height: 80vh;
     padding: 0 20px;
     display: flex;
     align-items: center;
@@ -245,6 +256,7 @@ body{
 
 /* BOOK DETAILS START */
 .book-details-container{
+    height: 80vh;
     padding: 20px 0;
 }
 .book-details-container .book-details{
@@ -281,6 +293,26 @@ body{
 }
 /* BOOK DETAILS END */
 
+/* ABOUT START */
+.about-container{
+    padding: 50px 20px;
+    height: 80vh;
+}
+.about-container .text{
+    width: 80%;
+}
+/* ABOUT END */
+
+/* CONTACT START */
+.contact-container{
+    padding: 50px 20px;
+    height: 80vh;
+}
+.contact-container .text{
+    width: 80%;
+}
+/* CONTACT END */
+
 /* NOT FOUND START */
 .not-found-container{
     padding: 50px 20px;
@@ -294,3 +326,135 @@ body{
     text-align: center;
 }
 /* NOT FOUND END */
+
+
+/* FOOTER START */
+.footer{
+    width: 100%;
+    height: 70px;
+    position: static;
+    bottom: 0;
+    background-color: rgb(39, 39, 39);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+/* FOOTER END */
+
+
+/* RESPONSIVE START */
+@media screen and (max-width:768px) {
+    /* HOME START */
+    .home-container{
+        height: auto;
+        padding-bottom: 20px;
+    }
+    .home-container .header{
+        padding: 20px 10px 0 10px;
+    }
+    .home-container .body .body-content{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 0;
+    }
+    .home-container .body .body-content div{
+        width: 300px;
+        height: 150px;
+        margin: 10px 0;
+    }
+    /* HOME END */
+
+    /* LOGIN START */
+    .login-container{
+        height: 80vh;
+    }
+    .login-container .formWrap .formDiv{
+        width: 300px;
+    }
+    /* LOGIN END */
+
+    /* SIGNUP START */
+    .signup-container{
+        height: 80vh;
+    }
+    .signup-container .formWrap .formDiv{
+        width: 300px;
+    }
+    /* SIGNUP END */
+
+    /* PROFILE START */
+    .profile-container{
+        height: 82vh;
+        width: 100%;
+        padding: 20px 20px;
+    }
+    .profile-container .list-group{
+        width: 380px;
+    }
+    .profile-container .list-group li{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 20px;
+    }
+    .changePasswordDiv form{
+        width: 350px;
+        height: 500px;
+    }
+    /* PROFILE END */
+
+    /* BOOK START */
+    .book-add-container form{
+        width: 80%;
+    }
+    /* BOOK END */
+
+    /* BOOK LIST START */
+    .book-list-container table{
+        font-size: 14px;
+    }
+    .book-list-container .buttons{
+        width: 100%;
+        display: flex;
+    }
+    .book-list-container .buttons a{
+        width: 100px;
+        height: 50px;
+        margin: 0 5px;
+        font-size: 13px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    /* BOOK LIST END */
+
+    /* BOOK DETAILS */
+    .book-details-container{
+        height: 82vh;
+    }
+    .book-details-container .book-details .list-group{
+        width: 90%;
+    }
+    .book-details-container .list-group li{
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    /* BOOK END */
+
+    /* ABOUT START */
+    .about-container{
+        padding: 20px 20px;
+        height: auto;
+    }
+    /* ABOUT END*/
+
+    /* CONTACT START */
+    .contact-container{
+        padding: 20px 20px;
+        height: auto;
+    }
+    /* CONTACT END*/
+}
+/* RESPONSIVE END*/

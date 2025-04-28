@@ -18,7 +18,7 @@
     </script>
 
     <% if (message.text) { %>
-        <div class="alert-wrap-2 alert <%= message.color %>" role="alert" style="margin: 20px 0;">
+        <div class="alert-wrap-2 alert <%= message.color %>" role="alert" style="margin: 20px 0; display: flex;">
             <%= message.text %>
         </div>
         <script>
@@ -78,28 +78,28 @@
         form.addEventListener("submit",(e)=>{
             if(name.value.length<3 || username.value.length<3) {
                 alertWrap.textContent = "Değerler en az 3 karakter olmalıdır.";
-                alertWrap.style.display = "block";
+                alertWrap.style.display = "flex";
                 setTimeout(()=>{
                     alertWrap.style.display = "none";
                 },3000);
                 return e.preventDefault();
             }else if(password.value.length<9 || password2.value.length<9) {
                 alertWrap.textContent = "Parolanız  en az 9 karakter olmalıdır.";
-                alertWrap.style.display = "block";
+                alertWrap.style.display = "flex";
                 setTimeout(()=>{
                     alertWrap.style.display = "none";
                 },3000);
                 return e.preventDefault();
             }else if(password.value==name || password.value==username) {
                 alertWrap.textContent = "Şifreniz isminizden farklı olmalıdır.";
-                alertWrap.style.display = "block";
+                alertWrap.style.display = "flex";
                 setTimeout(()=>{
                     alertWrap.style.display = "none";
                 },3000);
                 return e.preventDefault();
             }else if(password.value!=password2.value) {
                 alertWrap.textContent = "Şiferler uyuşmuyor.";
-                alertWrap.style.display = "block";
+                alertWrap.style.display = "flex";
                 setTimeout(()=>{
                     alertWrap.style.display = "none";
                 },3000);

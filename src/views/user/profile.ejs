@@ -83,6 +83,12 @@
                     changeAlert.textContent = "";
                 },3000);
                 return e.preventDefault();
+            }else if(newPassword.value.length<9){
+                changeAlert.textContent = "Şifreniz en az 9 karakter olmalıdır.";
+                setTimeout(()=>{
+                    changeAlert.textContent = "";
+                },3000);
+                return e.preventDefault();
             }else if(newPassword.value!=newPassword2.value){
                 changeAlert.textContent = "Şifreler uyuşmuyor.";
                 setTimeout(()=>{

@@ -1,5 +1,4 @@
 const User = require("../models/user");
-const slugify = require("../helpers/slugfield");
 const bcrypt = require("bcryptjs");
 
 exports.profile_post = async (req,res) => {
@@ -29,6 +28,8 @@ exports.profile_post = async (req,res) => {
     const hashPassword = await bcrypt.hashSync(newPassword,10);
     user.password = hashPassword;
     await user.save();
+    res.cookie("text","Şifreniz değiştirildi.");
+    res.cookie("color","alert-success");
 
     res.redirect("/profil");
 };
@@ -67,6 +68,6 @@ exports.about_get = async (req,res)=>{
     res.render("user/about");
 };
 
-exports.home_get = async (req,res)=>{   
+exports.home_get = async (req,res)=>{
     res.render("user/index");
 };

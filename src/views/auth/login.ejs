@@ -20,7 +20,7 @@
     </script>
 
     <% if (message.text) { %>
-        <div class="alert-wrap-2 alert <%= message.color %>" role="alert" style="margin: 20px 0;">
+        <div class="alert-wrap-2 alert <%= message.color %>" role="alert" style="margin: 20px 0; display: flex;">
             <%= message.text %>
         </div>
         <script>
@@ -63,21 +63,21 @@
             form.addEventListener("submit",(e)=>{
                 if(username.value.length<3) {
                     alertWrap.textContent = "Yanlış kullanıcı adı veya şifre.";
-                    alertWrap.style.display = "block";
+                    alertWrap.style.display = "flex";
                     setTimeout(()=>{
                         alertWrap.style.display = "none";
                     },3000);
                     return e.preventDefault();
                 }else if(password.value.length<9) {
                     alertWrap.textContent = "Yanlış kullanıcı adı veya şifre.";
-                    alertWrap.style.display = "block";
+                    alertWrap.style.display = "flex";
                     setTimeout(()=>{
                         alertWrap.style.display = "none";
                     },3000);
                     return e.preventDefault();
                 }else if(password.value==username) {
                     alertWrap.textContent = "Yanlış kullanıcı adı veya şifre.";
-                    alertWrap.style.display = "block";
+                    alertWrap.style.display = "flex";
                     setTimeout(()=>{
                         alertWrap.style.display = "none";
                     },3000);

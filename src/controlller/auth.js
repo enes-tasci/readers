@@ -110,6 +110,8 @@ exports.signup_post = async (req,res)=>{
     if(user) {
         res.cookie("text","Bu kullanıcı adı kullanılıyor.");
         res.cookie("color","alert-danger");
+        res.cookie("name",name);
+        res.cookie("username",username);
         return res.redirect("/kayit-ol");
     };
 

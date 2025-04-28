@@ -117,7 +117,7 @@ exports.book_add_post = async (req,res) => {
     user.books.push(book);
     await user.save();
 
-    res.redirect("/profil");
+    res.redirect("/kitap-listesi");
 };
 
 exports.book_add_get = (req,res) => {

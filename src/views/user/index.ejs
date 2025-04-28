@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/scrollreveal"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <title>READERS | Anasayfa</title>
@@ -24,10 +25,10 @@
         </div>
         <div class="body">
             <div class="body-head">
-                <h2>Neler Yapabilirsin?</h2>
+                <h2 class="body-text" style="position: relative; z-index: -100;">Neler Yapabilirsin?</h2>
             </div>
             <div class="body-content">
-                <div>
+                <div class="body-div">
                     <h3>Kitap Kaydet</h3>
                     <p>Okuduğun kitapları hızlıca listeye ekleyebilirsin.</p>
                 </div>
@@ -46,5 +47,29 @@
     <%- include("../partials/footer") %>
 
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        ScrollReveal().reveal('.header', {
+            duration: 1200,
+            origin: 'top',
+            distance: '500px',
+            delay: 200,
+            easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+        });
+        ScrollReveal().reveal('.body-content', {
+            duration: 1000,
+            origin: 'bottom',
+            distance: '500px',
+            delay: 800,
+            easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+        });
+        ScrollReveal().reveal('.body-text', {
+            duration: 1000,
+            origin: 'top',
+            distance: '300px',
+            delay: 800,
+            easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+        });
+    </script>
 </body>
 </html>

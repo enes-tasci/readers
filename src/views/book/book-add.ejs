@@ -48,9 +48,11 @@
         const pageCount = document.querySelector(".page-count");
         const form = document.querySelector("form");
         const alertWrap = document.querySelector(".alert-wrap");
+        console.log(writer.value);
+        
 
         form.addEventListener("submit",(e)=>{
-            if(name.value.length<3 || writer.length<3 || pageCount.value<3){
+            if(name.value.length<3 || writer.value.length<3 || pageCount.value<3){
                 alertWrap.textContent = "Değerler en az 3 karakter olmalıdır.";
                 alertWrap.style.display = "block";
                 setTimeout(()=>{

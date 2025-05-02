@@ -8,7 +8,7 @@ Project Demo: <a href="https://youtu.be/GHqQ9DjB0mg?si=FcEShyOM1-pO8pqO" target=
 - Node.js
 - Express.js
 - MongoDB
-- Mongoode ORM
+- Mongoose ORM
 - EJS
 
 ---
